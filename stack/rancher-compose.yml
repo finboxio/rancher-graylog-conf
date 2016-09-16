@@ -3,12 +3,12 @@ graylog:
   health_check:
     port: 9000
     interval: 2000
-    initializing_timeout: 10000
+    initializing_timeout: 120000
     unhealthy_threshold: 3
     strategy: recreate
     healthy_threshold: 2
     response_timeout: 2000
-    reinitializing_timeout: 10000
+    reinitializing_timeout: 120000
 graylog-conf:
   scale: 1
 graylog-serve:

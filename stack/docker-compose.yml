@@ -1,25 +1,23 @@
 graylog:
   tty: true
+  stdin_open: true
   image: graylog2/server
-  entrypoint: /opt/rancher/bin/run.sh
   volumes_from:
     - graylog-conf
   environment:
     GRAYLOG_DATA_DIR: /graylog
     GRAYLOG_ELASTICSEARCH_SHARDS: '1'
     GRAYLOG_ELASTICSEARCH_REPLICAS: '0'
-    GRAYLOG_ROOT_PASSWORD_SHA2: f4b13bd73cdcd8e3bafbbe07f1f0785ee324e9c06d52157bc84728ff637a160a
-    GRAYLOG_PASSWORD_SECRET: vCamCibQ1aRyZDtHrQiXq57173nMYOX6A52prC43H3h6TnchFQOhzFqH5Vs7LfhWhPfOGjcG26vJOM4kly46rfRDggtnlnCI
+    GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+    GRAYLOG_PASSWORD_SECRET: secret
     GRAYLOG_REST_ENABLE_CORS: 'true'
     GRAYLOG_REST_ENABLE_GZIP: 'true'
     GRAYLOG_WEB_ENABLE_CORS: 'true'
     GRAYLOG_WEB_ENABLE_GZIP: 'true'
-    GRAYLOG_WEB_ENDPOINT_URI: http://gla.rancher
+    GRAYLOG_WEB_ENDPOINT_URI: http://gl.rancher/api
   labels:
     lb.haproxy.9000.domains: http://gl.rancher
     lb.haproxy.9000.frontend: 80/http
-    lb.haproxy.12900.domains: http://gla.rancher
-    lb.haproxy.12900.frontend: 80/http
     io.rancher.sidekicks: graylog-conf,graylog-serve
 
 graylog-conf:
@@ -30,7 +28,6 @@ graylog-conf:
   labels:
     io.rancher.container.pull_image: always
   volumes:
-    - /Users/Shared/rancher/graylog/data:/graylog
     - /etc/rancher-conf
     - /opt/rancher/bin
 
@@ -46,11 +43,11 @@ graylog-serve:
 
 mongo:
   image: "mongo:3"
-  volumes:
-    - /Users/Shared/rancher/graylog/data/mongo:/data/db
+  stdin_open: true
+  tty: true
 
 elasticsearch:
   image: "elasticsearch:2"
   command: "elasticsearch -Des.cluster.name='graylog'"
-  volumes:
-    - /Users/Shared/rancher/graylog/data/elasticsearch:/usr/share/elasticsearch/data
+  stdin_open: true
+  tty: true
