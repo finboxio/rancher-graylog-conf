@@ -35,7 +35,7 @@ if [ "$1" = 'graylog' -a "$(id -u)" = '0' ]; then
   chmod +r /etc/rancher-conf/graylog.conf
   chmod +r /etc/rancher-conf/log4j2.xml
 
-  sed -i "s/\/usr\/share\/graylog\/data/${GRAYLOG_DATA_DIR}/g" /etc/rancher-conf/graylog.conf
+  sed -e "s/\/usr\/share\/graylog\/data/$(echo $GRAYLOG_DATA_DIR | sed 's/\//\\\//g')/g" -i /etc/rancher-conf/graylog.conf
 
   # Start Graylog server
   set -- gosu graylog "$JAVA_HOME/bin/java" $GRAYLOG_SERVER_JAVA_OPTS \
