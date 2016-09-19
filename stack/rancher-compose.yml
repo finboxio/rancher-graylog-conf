@@ -1,14 +1,35 @@
 graylog:
   scale: 1
+  metadata:
+    fluentd:
+      plugins:
+        - gelf
+      global: |
+        <store>
+          @type gelf
+          host graylog.graylog.rancher.internal
+          port 12201
+          full_message_key log
+          short_message_key log
+          flush_interval 5s
+        </store>
+      yaml:
+        - type: gelf
+          host: graylog.graylog.rancher.internal
+          port: 12201
+          full_message_key: log
+          short_message_key: log
+          flush_interval: 5s
+
   health_check:
     port: 9000
     interval: 2000
-    initializing_timeout: 120000
+    initializing_timeout: 300000
     unhealthy_threshold: 3
     strategy: recreate
     healthy_threshold: 2
     response_timeout: 2000
-    reinitializing_timeout: 120000
+    reinitializing_timeout: 300000
 graylog-conf:
   scale: 1
 graylog-serve:
@@ -24,3 +45,9 @@ mongo:
   scale: 1
 elasticsearch:
   scale: 1
+  metadata:
+    fluentd:
+      service: |
+        <match **>
+          @type stdout
+        </match>

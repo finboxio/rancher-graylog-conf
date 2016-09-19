@@ -9,7 +9,7 @@ graylog:
     GRAYLOG_ELASTICSEARCH_SHARDS: '1'
     GRAYLOG_ELASTICSEARCH_REPLICAS: '0'
     GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
-    GRAYLOG_PASSWORD_SECRET: secret
+    GRAYLOG_PASSWORD_SECRET: nineteeneightynine
     GRAYLOG_REST_ENABLE_CORS: 'true'
     GRAYLOG_REST_ENABLE_GZIP: 'true'
     GRAYLOG_WEB_ENABLE_CORS: 'true'
@@ -51,3 +51,5 @@ elasticsearch:
   command: "elasticsearch -Des.cluster.name='graylog'"
   stdin_open: true
   tty: true
+  labels:
+    fluentd.pattern: .*
