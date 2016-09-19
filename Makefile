@@ -52,7 +52,7 @@ rancher.deploy: docker.push
 		--url $(RANCHER_URL) \
 		--access-key $(RANCHER_ACCESS_KEY) \
 		--secret-key $(RANCHER_SECRET_KEY) \
-		-p graylog \
+		-p rancher \
 		-f stack/docker-compose.yml \
 		-r stack/rancher-compose.yml \
 		up --force-upgrade -d
