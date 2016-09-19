@@ -5,16 +5,7 @@ graylog:
       plugins:
         - gelf
         - https://raw.githubusercontent.com/finboxio/rancher-graylog-conf/master/fluentd/out_gelf.rb
-      global: |
-        <store>
-          @type gelf
-          host graylog.rancher.rancher.internal
-          port 12201
-          full_message_key log
-          short_message_key log
-          flush_interval 5s
-        </store>
-      yaml:
+      global:
         - type: gelf
           host: graylog.rancher.rancher.internal
           port: 12201

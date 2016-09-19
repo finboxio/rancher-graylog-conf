@@ -16,8 +16,8 @@ graylog:
     GRAYLOG_WEB_ENABLE_GZIP: 'true'
     GRAYLOG_WEB_ENDPOINT_URI: http://gl.rancher/api
   labels:
-    lb.haproxy.9000.domains: http://gl.rancher
-    lb.haproxy.9000.frontend: 80/http
+    rancher.haproxy.9000.domains: http://gl.rancher
+    rancher.haproxy.9000.frontend: 80/http
     io.rancher.sidekicks: graylog-conf,graylog-serve
 
 graylog-conf:
@@ -36,8 +36,8 @@ graylog-serve:
   tty: true
   command: /etc/rancher-conf
   labels:
-    lb.haproxy.3000.frontend: 80/http
-    lb.haproxy.3000.domains: http://gls.rancher
+    rancher.haproxy.3000.frontend: 80/http
+    rancher.haproxy.3000.domains: http://gls.rancher
   volumes_from:
     - graylog-conf
 
