@@ -1,4 +1,9 @@
 
+0.0.3 / 2016-09-21
+==================
+
+  * replace dots in message fields with underscores
+
 0.0.2 / 2016-09-19
 ==================
 
