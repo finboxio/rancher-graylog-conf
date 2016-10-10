@@ -51,8 +51,12 @@ module Fluent
         normalize_level(gelfentry)
       end
 
+      if gelfentry[:full_message].nil? then
+        gelfentry[:full_message] = record.to_json
+      end
+
       if gelfentry[:short_message].nil? then
-        gelfentry[:short_message] = record.to_json
+        gelfentry[:short_message] = gelfentry[:full_message]
       end
 
       gelfentry[:short_message] = uncolorize(gelfentry[:short_message])
