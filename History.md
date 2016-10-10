@@ -1,4 +1,9 @@
 
+0.0.4 / 2016-10-10
+==================
+
+  * use full_message as default short_message when gelf.message not available
+
 0.0.3 / 2016-09-21
 ==================
 
