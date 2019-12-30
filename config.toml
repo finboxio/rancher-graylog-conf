@@ -1,12 +1,14 @@
 metadata-version = "2015-12-19"
 log-level = "debug"
 interval = 10
-onetime = false
+onetime = true
 
 [[ template ]]
 source = "/etc/rancher-conf/graylog.conf.tmpl"
-dest = "/etc/rancher-conf/graylog.conf"
+dest = "/etc/rancher-conf/graylog/graylog.conf"
+check-cmd = "sh /etc/rancher-conf/setup.sh"
 
 [[ template ]]
 source = "/etc/rancher-conf/log4j2.xml.tmpl"
-dest = "/etc/rancher-conf/log4j2.xml"
+dest = "/etc/rancher-conf/graylog/log4j2.xml"
+check-cmd = "sh /etc/rancher-conf/setup.sh"
