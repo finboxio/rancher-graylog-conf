@@ -42,7 +42,7 @@ module Fluent
       record.each_pair do |k,v|
         case k
         when @short_message_key, @full_message_key, @host_key, @level_key then
-        else gelfentry['_' + underscore(k)] = v end
+        else gelfentry['_' + k] = v end
       end
 
       if gelfentry[:level].nil? then
@@ -74,10 +74,6 @@ module Fluent
 
     def uncolorize(string)
       string.gsub(/\033\[\d{1,2}(;\d{1,2}){0,2}[mGK]/, '')
-    end
-
-    def underscore(key)
-      key.gsub('.', '_')
     end
 
     def normalize_level(entry)
